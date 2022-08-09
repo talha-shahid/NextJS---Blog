@@ -6,7 +6,9 @@ import Link from "next/link";
 //Step 2: Iterate through them and display them
 
 const Blog = () => {
+
   const [blogs, setBlogs] = useState([]);
+
   useEffect(() => {
     console.log("UseEffect is running");
     fetch("http://localhost:3000/api/blogs")
@@ -14,22 +16,22 @@ const Blog = () => {
         return a.json();
       })
       .then((parsed) => {
-        console.log(parsed);
         setBlogs(parsed);
       });
+
   }, []);
+  
+  // By the end of day, "blogs" will conntain all the "blogData" in object form
+  // console.log(typeof blogs)
+  // console.log(blogs )
 
   return (
+
     <>
-      {/* <style jsx>{`
-        .blogWrapper {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      `}</style> */}
+
       <div className={styles.container}>
         <div className={styles.main}>
+          {/*  */}
           {blogs.map((blogItem) => {
             return (
               <div key={blogItem.slug}>
@@ -42,55 +44,7 @@ const Blog = () => {
           })}
         </div>
       </div>
-      {/* <div className="blogWrapper">
-      <div className={styles.blogplace}> */}
-      {/* <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-        </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-        </div>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-        </div> */}
-      {/* </div>
-      </div> */}
-
-      {/* <div className="blogWrapper">
-      <div className={styles.blogplace}>
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-        </div>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-        </div>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-        </div>
-      </div>
-      </div> */}
     </>
   );
 };

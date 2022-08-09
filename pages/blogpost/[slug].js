@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
 import styles from "../../styles/Home.module.css"
 import Head from "next/head"
@@ -7,50 +7,32 @@ import Head from "next/head"
 // Step 2: Populate them inside the page
 
 const slug = () => {
+    const [blog, setBlog] = useState();
     const router = useRouter();
-    const {slug} = router.query;
+    useEffect(()=>{
+        if(!router.isReady) return;
+        const {slug} = router.query;
+        fetch(`http://localhost:3000/api/getBlog?slug=${slug}`)
+        .then((a) => {
+          return a.json();
+        })
+        .then((parsed) => {
+          setBlog(parsed);
+        });
+    }, [router.isReady])
+
+
 
 
   return (
-    <>
-    <style jsx>{`
-    .w-container{
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
 
-    .wordWrapper {
-        background: blue;
-        width: 90vw;
-        font-size: 30px;
-        padding: 30px;
-        border-radius: 10px;
-
-    }
-    .title{
-
-    }
-  `}</style>
-
-    <div>
         <div className={styles.container}>
-            <Head>
-                <title>For More</title>
-            </Head>
-            <div className={`title ${styles.title}`}><h3>{slug}</h3></div>
-            {/* <div className={styles.main}> */}
-                {/* <h1 className={styles.title}>Search <a href={`https://stackoverflow.com/search?q=${slug}`}>{slug}</a> Here</h1> */}
-                <div className="w-container">
-                <div className="wordWrapper">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dignissimos eligendi doloribus quaerat fugiat. Unde, aperiam nulla. Ipsum, praesentium cumque facilis corporis rem cum odit odio, quae eaque ut delectus magnam animi mollitia nemo!
-                </div>
-                </div>
-
-            {/* </div> */}
+            <div className={styles.main}>
+            <div><h3>{blog && blog.title}</h3></div>
+                    {blog && blog.content}
+            </div>
         </div>
-    </div>
-    </>
+
   )
 }
 
