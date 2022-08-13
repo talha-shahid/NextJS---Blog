@@ -1,0 +1,57 @@
+.main{
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    font-size: 4rem;
+    text-align: center;
+}
+
+.talha{
+    color: #036197;
+}
+.talha:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.description{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: -2rem;
+}
+.grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(9, 50, 77); */
+    padding: 3rem;
+}
+.card{
+    width: 50vw;
+    margin-top: 1rem;
+    /* margin-bottom: 1rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(13, 78, 122, 0.034);
+    border-radius: 1rem;
+    height: 10rem;
+    box-shadow: 0 8px 6px 1px rgba(0, 0, 0, 0.582);
+    border: 3px solid rgba(8, 65, 189, 0.623);
+
+}
+.card:hover{
+    background-color: rgb(21, 138, 216);
+}
+
+.latest{
+    width: 15vw;
+    text-align: center;
+    margin: auto;
+    background-color: rgba(0, 0, 255, 0.541);
+    border-radius: 1rem;
+    font-weight: 500;
+}
